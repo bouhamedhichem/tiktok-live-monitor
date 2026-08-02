@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+frontend/dist/
+
+# Environment files
+.env
+.env.local
+
+# Runtime data (comments/leads history, logs, exports)
+backend/src/data/*.json
+backend/src/data/*.log
+backend/src/data/exports/*
+!backend/src/data/exports/.gitkeep
+!backend/src/data/.gitkeep
+
+# OS/editor cruft
+.DS_Store
+*.log
+.vscode/
+.idea/
