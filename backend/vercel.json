@@ -13,6 +13,14 @@
     }
   ],
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "CORS_ORIGIN": "https://hichem.app",
+    "DEFAULT_KEYWORDS": "giveaway,discount,order,interested,price",
+    "PHONE_MIN_DIGITS": "8",
+    "PHONE_MAX_DIGITS": "15",
+    "RECONNECT_MAX_ATTEMPTS": "5",
+    "RECONNECT_DELAY_MS": "4000",
+    "CONNECT_TIMEOUT_MS": "20000",
+    "LOG_LEVEL": "info"
   }
 }
