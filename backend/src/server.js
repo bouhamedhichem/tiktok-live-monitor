@@ -26,8 +26,8 @@ app.use((err, req, res, next) => {
 const httpServer = http.createServer(app);
 attachWebSocket(httpServer, monitor);
 
-httpServer.listen(config.port, () => {
-  logger.info(`TikTok Live Monitor backend listening on http://localhost:${config.port}`);
+httpServer.listen(config.port, '0.0.0.0', () => {
+  logger.info(`TikTok Live Monitor backend listening on http://0.0.0.0:${config.port}`);
 });
 
 // Graceful shutdown so the TikTok connection is closed cleanly.
