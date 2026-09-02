@@ -26,10 +26,7 @@ services:
     startCommand: npm start
     envVars:
       - key: CORS_ORIGIN
-        fromService:
-          type: web
-          name: tiktok-monitor-frontend
-          property: host
+        value: https://hichem.app
       - key: DEFAULT_KEYWORDS
         value: giveaway,discount,order,interested,price
       - key: PHONE_MIN_DIGITS
@@ -44,17 +41,3 @@ services:
         value: "20000"
       - key: LOG_LEVEL
         value: info
-
-  - type: web
-    name: tiktok-monitor-frontend
-    runtime: static
-    rootDir: frontend
-    plan: free
-    buildCommand: npm install && npm run build
-    staticPublishPath: dist
-    envVars:
-      - key: VITE_API_URL
-        fromService:
-          type: web
-          name: tiktok-monitor-backend
-          property: host
