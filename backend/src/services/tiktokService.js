@@ -15,7 +15,13 @@ const EventEmitter = require('events');
 //    for spam, unsolicited marketing, or any purpose the commenter did not
 //    reasonably expect when they typed in a public chat. See README.md
 //    ("Legal & Ethical Use") for the full guidance.
-const { TikTokLiveConnection } = require('tiktok-live-connector');
+
+// Use a dynamic import so the ESM-only dependency can be loaded from
+// CommonJS code without converting the whole repo to ESM.
+async function loadTikTokConnector() {
+  const mod = await import('tiktok-live-connector');
+  return mod.TikTokLiveConnection ?? mod.default?.TikTokLiveConnection ?? mod.default;
+}
 
 const config = require('../config');
 const logger = require('./logger');
@@ -95,13 +101,16 @@ class TikTokMonitor extends EventEmitter {
       // nothing throws before any network request is even made, which
       // (if not caught here) left the UI stuck on "Connecting..." forever
       // instead of surfacing an error.
-      this.connection = new TikTokLiveConnection(this.username, {});
+      const TikTokLiveConnection = await loadTikTokConnector();
+      // handle case where module exports default class directly or as named export
+      const ConnClass = TikTokLiveConnection?.prototype ? TikTokLiveConnection : TikTokLiveConnection?.default ?? TikTokLiveConnection;
+      this.connection = new ConnClass(this.username, {});
       this._registerHandlers();
 
       const state = await this._withTimeout(
         this.connection.connect(),
         config.connectTimeoutMs,
-        `Timed out after ${config.connectTimeoutMs / 1000}s waiting for TikTok. Either @${this.username} isn't currently live, or the connection is being blocked (firewall, antivirus, or network).`
+        `Timed out after ${config.connectTimeoutMs / 1000}s waiting for TikTok. Either @${this.username} isn't currently live, or the connection is being blocked (firewall, antivirus, or network)[...]
       );
       this.paused = false;
       this._setStatus(STATUS.CONNECTED, { roomId: state?.roomId });
