@@ -110,7 +110,7 @@ class TikTokMonitor extends EventEmitter {
       const state = await this._withTimeout(
         this.connection.connect(),
         config.connectTimeoutMs,
-        `Timed out after ${config.connectTimeoutMs / 1000}s waiting for TikTok. Either @${this.username} isn't currently live, or the connection is being blocked (firewall, antivirus, or network)[...]
+        `Timed out after ${config.connectTimeoutMs / 1000}s waiting for TikTok. Either @${this.username} isn't currently live, or the connection is being blocked (firewall, antivirus, or network).`
       );
       this.paused = false;
       this._setStatus(STATUS.CONNECTED, { roomId: state?.roomId });
