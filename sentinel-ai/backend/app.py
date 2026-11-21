@@ -5,7 +5,7 @@ from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel,EmailStr,Field
 from pydantic_settings import BaseSettings
 from sqlalchemy import create_engine,String,Float,DateTime,ForeignKey,Boolean,Text,desc
-from sqlalchemy.orm import DeclarativeBase,sessionmaker,Mapped,mapped_column,relationship,Session
+from sqlalchemy.orm import DeclarativeBase,sessionmaker,Mapped,mapped_column,relationship,Session\nfrom sqlalchemy import text
 from jose import jwt,JWTError
 from passlib.context import CryptContext
 
@@ -15,7 +15,7 @@ class Settings(BaseSettings):
  sentinel_ingest_api_key:str="local-demo-ingest-key-change-me"
  class Config: env_file=".env"
 cfg=Settings()
-engine=create_engine(cfg.database_url,pool_pre_ping=True,connect_args={"check_same_thread":False} if cfg.database_url.startswith("sqlite") else {})
+db_url=cfg.database_url\nif db_url.startswith("postgresql://"):db_url=db_url.replace("postgresql://","postgresql+psycopg://",1)\nengine=create_engine(db_url,pool_pre_ping=True,pool_recycle=300,connect_args={"check_same_thread":False} if db_url.startswith("sqlite") else {})
 SessionLocal=sessionmaker(bind=engine,autoflush=False,autocommit=False)
 class Base(DeclarativeBase):pass
 def get_db():
