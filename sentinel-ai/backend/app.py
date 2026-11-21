@@ -5,17 +5,20 @@ from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel,EmailStr,Field
 from pydantic_settings import BaseSettings
 from sqlalchemy import create_engine,String,Float,DateTime,ForeignKey,Boolean,Text,desc
-from sqlalchemy.orm import DeclarativeBase,sessionmaker,Mapped,mapped_column,relationship,Session\nfrom sqlalchemy import text
+from sqlalchemy.orm import DeclarativeBase,sessionmaker,Mapped,mapped_column,relationship,Session
+from sqlalchemy import text
 from jose import jwt,JWTError
 from passlib.context import CryptContext
 
 class Settings(BaseSettings):
- jwt_secret:str="unsafe-development-secret-change-this";access_token_minutes:int=60
- database_url:str="sqlite:///./sentinel.db";cors_origins:str="http://localhost:5173"
- sentinel_ingest_api_key:str="local-demo-ingest-key-change-me"
+ jwt_secret:str=Field(min_length=32);access_token_minutes:int=60
+ database_url:str;cors_origins:str="http://localhost:5173"
+ sentinel_ingest_api_key:str=Field(min_length=32)
  class Config: env_file=".env"
 cfg=Settings()
-db_url=cfg.database_url\nif db_url.startswith("postgresql://"):db_url=db_url.replace("postgresql://","postgresql+psycopg://",1)\nengine=create_engine(db_url,pool_pre_ping=True,pool_recycle=300,connect_args={"check_same_thread":False} if db_url.startswith("sqlite") else {})
+db_url=cfg.database_url
+if db_url.startswith("postgresql://"):db_url=db_url.replace("postgresql://","postgresql+psycopg://",1)
+engine=create_engine(db_url,pool_pre_ping=True,pool_recycle=300,connect_args={"check_same_thread":False} if db_url.startswith("sqlite") else {})
 SessionLocal=sessionmaker(bind=engine,autoflush=False,autocommit=False)
 class Base(DeclarativeBase):pass
 def get_db():
@@ -80,6 +83,12 @@ app.add_middleware(CORSMiddleware,allow_origins=[x.strip() for x in cfg.cors_ori
 def startup():Base.metadata.create_all(bind=engine)
 @app.get("/health")
 def health():return {"status":"ok","service":"sentinel-api","version":"0.1.0"}
+@app.get("/ready")
+def ready():
+ try:
+  with engine.connect() as connection:connection.execute(text("SELECT 1"))
+  return {"status":"ready","database":"connected"}
+ except Exception:raise HTTPException(503,"Database unavailable")
 @app.post("/api/v1/auth/register",status_code=201)
 def register(d:Register,db:Session=Depends(get_db)):
  email=d.email.lower()
