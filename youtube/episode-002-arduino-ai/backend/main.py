@@ -1,10 +1,11 @@
 from __future__ import annotations
 import os
 import time
+import secrets
 from collections import deque
 from typing import Literal
 import httpx
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Header
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, ConfigDict
 
@@ -13,7 +14,7 @@ history: deque[dict] = deque(maxlen=200)
 app = FastAPI(title="CodeCram AIoT Lab API", version="1.0.0")
 origins = [v.strip() for v in os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",") if v.strip()]
 app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=False,
-                   allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
+                   allow_methods=["GET", "POST"], allow_headers=["Content-Type", "X-Device-Key"])
 
 class TelemetryIn(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -58,7 +59,11 @@ async def health():
     return {"status": "ok", "uptime_seconds": round(time.time() - APP_STARTED, 1)}
 
 @app.post("/api/telemetry")
-async def ingest(payload: TelemetryIn):
+async def ingest(payload: TelemetryIn, x_device_key: str | None = Header(default=None)):
+    if payload.source != "simulator":
+        expected = os.getenv("DEVICE_INGEST_KEY", "").strip()
+        if not expected or not x_device_key or not secrets.compare_digest(x_device_key, expected):
+            raise HTTPException(status_code=401, detail="Invalid device credentials")
     record = payload.model_dump()
     record.update(received_at=time.time(), explanation=explain_with_rules(record), explanation_source="local_rules")
     history.appendleft(record)
