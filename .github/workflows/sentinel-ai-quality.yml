@@ -1,0 +1,35 @@
+name: SentinelAI quality
+on:
+  push:
+    paths:
+      - "sentinel-ai/**"
+      - ".github/workflows/sentinel-ai-quality.yml"
+  pull_request:
+    paths:
+      - "sentinel-ai/**"
+      - ".github/workflows/sentinel-ai-quality.yml"
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sentinel-ai/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run build
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sentinel-ai/backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install fastapi==0.115.12 'uvicorn[standard]==0.34.2' sqlalchemy==2.0.40 'psycopg[binary]==3.2.9' pydantic-settings==2.9.1 'python-jose[cryptography]==3.4.0' 'passlib[argon2]==1.7.4' email-validator==2.2.0 pytest==8.3.5
+      - run: PYTHONPATH=. pytest -q
