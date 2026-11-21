@@ -219,3 +219,31 @@ Agent clients supporting Agent Skills can discover each skill at .agents/skills/
 - security-alert-triage-automation: dedicated workflow guidance in its SKILL.md file.
 - file-management-automation: dedicated workflow guidance in its SKILL.md file.
 - pdf-document-automation: dedicated workflow guidance in its SKILL.md file.
+
+
+## Expanded engineering, enterprise systems, security, BI, and market research skills
+
+This expansion adds dedicated skill packs for full-stack and framework development, web performance and accessibility, ecommerce and CMS platforms, application/cloud/API security, DevSecOps, identity, threat modeling, 2D/3D motion and video production, BI dashboards and semantic modeling, CRM/ERP/SCM platforms, data engineering, machine learning and MLOps, precious-metals and energy-market analytics, commodity research, paper-trading simulation, supply-chain operations, and AI applications.
+
+### Web engineering and product platforms
+- Full-stack, Next.js, React, Vue, Angular, GraphQL, WebSockets, PWA, microservices, serverless, WordPress, Shopify, Webflow, ecommerce, CMS, subscriptions, payments, SEO, performance, accessibility, design systems, Figma-to-code, and website redesign.
+
+### Security and infrastructure
+- OWASP application security, authorized penetration testing, threat modeling, secure code review, API/database/cloud security, WAF, zero trust, OAuth/OIDC, SSO, DevSecOps, Kubernetes, containers, infrastructure as code, incident response, and compliance reporting.
+
+### Motion, video, and 3D
+- 2D/3D motion design, After Effects workflows, Blender animation, rigging, character animation, cinematic production, color grading, sound design, 3D product visualization, architectural visualization, real-time rendering, Lottie, and motion graphics for dashboards.
+
+### BI, analytics, CRM, ERP, and SCM
+- Dashboard UX, Power BI, Tableau, Metabase, Looker, Looker Studio, embedded analytics, KPI governance, data warehouses, SQL analytics, dbt, Spark, Excel Power Query, CRM architecture, Salesforce, ERP, Odoo, SAP integration, procurement, inventory, warehouse, transportation, demand planning, and supply-chain visibility.
+
+### Machine learning and predictive analytics
+- Time-series forecasting, regression, classification, feature engineering, AutoML, model explainability, MLOps, model monitoring, data validation, churn prediction, fraud detection, anomaly detection, recommendation systems, NLP, computer vision, deep learning, reinforcement learning, and model risk governance.
+
+### Gold, precious metals, petroleum, and trading research
+- Gold technical/fundamental analysis, silver and platinum analytics, crude oil and natural gas research, fuel retail price analysis, commodity data pipelines, backtesting, paper-trading simulation, portfolio risk dashboards, sentiment analysis, economic indicators, and trading-strategy risk controls.
+- These skills are for research, analytics, and simulated testing. They do not promise returns or provide personalized investment advice; live execution is not enabled by these skill files.
+
+### AI applications and assistants
+- Multimodal AI, RAG evaluation, fine-tuning workflows, content moderation, document extraction, AI report generation, dashboard assistants, conversational analytics, voice agents, customer-service automation, personalization, AI search, recommendations, forecasting, and responsible AI governance.
+
