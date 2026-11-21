@@ -138,3 +138,84 @@ Agent clients supporting Agent Skills can discover each skill at .agents/skills/
 - visual-storytelling-data: dedicated workflow guidance in its SKILL.md file.
 - creative-asset-quality-assurance: dedicated workflow guidance in its SKILL.md file.
 
+
+## Additional workflow automation, AI agents, and chatbot skills
+
+### Workflow platforms and orchestration
+- n8n-workflow-automation: dedicated workflow guidance in its SKILL.md file.
+- make-com-automation: dedicated workflow guidance in its SKILL.md file.
+- zapier-automation: dedicated workflow guidance in its SKILL.md file.
+- workflow-orchestration: dedicated workflow guidance in its SKILL.md file.
+- event-driven-architecture: dedicated workflow guidance in its SKILL.md file.
+- webhook-engineering: dedicated workflow guidance in its SKILL.md file.
+- api-orchestration: dedicated workflow guidance in its SKILL.md file.
+- browser-rpa-automation: dedicated workflow guidance in its SKILL.md file.
+- desktop-rpa-automation: dedicated workflow guidance in its SKILL.md file.
+- workflow-architecture-patterns: dedicated workflow guidance in its SKILL.md file.
+- low-code-app-automation: dedicated workflow guidance in its SKILL.md file.
+
+### Chatbots and conversational apps
+- conversational-chatbot-design: dedicated workflow guidance in its SKILL.md file.
+- customer-support-chatbot: dedicated workflow guidance in its SKILL.md file.
+- rag-chatbot-engineering: dedicated workflow guidance in its SKILL.md file.
+- voice-chatbot-engineering: dedicated workflow guidance in its SKILL.md file.
+- telegram-bot-development: dedicated workflow guidance in its SKILL.md file.
+- discord-bot-development: dedicated workflow guidance in its SKILL.md file.
+- slack-bot-development: dedicated workflow guidance in its SKILL.md file.
+- whatsapp-business-automation: dedicated workflow guidance in its SKILL.md file.
+- website-live-chat: dedicated workflow guidance in its SKILL.md file.
+- chatbot-evaluation: dedicated workflow guidance in its SKILL.md file.
+- chatbot-analytics: dedicated workflow guidance in its SKILL.md file.
+- chatbot-memory-management: dedicated workflow guidance in its SKILL.md file.
+- chatbot-human-handoff: dedicated workflow guidance in its SKILL.md file.
+
+### AI agents and LLM engineering
+- ai-workflow-automation: dedicated workflow guidance in its SKILL.md file.
+- llm-agent-orchestration: dedicated workflow guidance in its SKILL.md file.
+- multi-agent-systems: dedicated workflow guidance in its SKILL.md file.
+- prompt-injection-defense: dedicated workflow guidance in its SKILL.md file.
+- ai-tool-calling: dedicated workflow guidance in its SKILL.md file.
+- ai-human-in-the-loop: dedicated workflow guidance in its SKILL.md file.
+- agentic-browser-workflows: dedicated workflow guidance in its SKILL.md file.
+- autonomous-research-agents: dedicated workflow guidance in its SKILL.md file.
+- vector-database-operations: dedicated workflow guidance in its SKILL.md file.
+- llm-guardrails-and-safety: dedicated workflow guidance in its SKILL.md file.
+- llm-evaluation-pipelines: dedicated workflow guidance in its SKILL.md file.
+- llm-cost-and-latency-optimization: dedicated workflow guidance in its SKILL.md file.
+- ai-observability: dedicated workflow guidance in its SKILL.md file.
+- ai-data-labeling-workflows: dedicated workflow guidance in its SKILL.md file.
+- synthetic-data-generation: dedicated workflow guidance in its SKILL.md file.
+- ai-document-assistant: dedicated workflow guidance in its SKILL.md file.
+- ai-code-review-automation: dedicated workflow guidance in its SKILL.md file.
+- ai-pr-automation: dedicated workflow guidance in its SKILL.md file.
+
+### Business and productivity automation
+- document-processing-automation: dedicated workflow guidance in its SKILL.md file.
+- invoice-processing-automation: dedicated workflow guidance in its SKILL.md file.
+- email-workflow-automation: dedicated workflow guidance in its SKILL.md file.
+- calendar-scheduling-automation: dedicated workflow guidance in its SKILL.md file.
+- crm-automation: dedicated workflow guidance in its SKILL.md file.
+- marketing-automation: dedicated workflow guidance in its SKILL.md file.
+- social-media-workflow-automation: dedicated workflow guidance in its SKILL.md file.
+- content-repurposing-automation: dedicated workflow guidance in its SKILL.md file.
+- personal-productivity-automation: dedicated workflow guidance in its SKILL.md file.
+- forms-and-approval-automation: dedicated workflow guidance in its SKILL.md file.
+
+### Data, operations, and governance
+- data-pipeline-orchestration: dedicated workflow guidance in its SKILL.md file.
+- etl-elt-automation: dedicated workflow guidance in its SKILL.md file.
+- scheduled-job-automation: dedicated workflow guidance in its SKILL.md file.
+- queue-and-worker-systems: dedicated workflow guidance in its SKILL.md file.
+- workflow-observability: dedicated workflow guidance in its SKILL.md file.
+- workflow-security-review: dedicated workflow guidance in its SKILL.md file.
+- workflow-testing: dedicated workflow guidance in its SKILL.md file.
+- workflow-versioning: dedicated workflow guidance in its SKILL.md file.
+- workflow-documentation: dedicated workflow guidance in its SKILL.md file.
+- workflow-cost-optimization: dedicated workflow guidance in its SKILL.md file.
+- workflow-approval-routing: dedicated workflow guidance in its SKILL.md file.
+- knowledge-base-automation: dedicated workflow guidance in its SKILL.md file.
+- devops-workflow-automation: dedicated workflow guidance in its SKILL.md file.
+- incident-response-automation: dedicated workflow guidance in its SKILL.md file.
+- security-alert-triage-automation: dedicated workflow guidance in its SKILL.md file.
+- file-management-automation: dedicated workflow guidance in its SKILL.md file.
+- pdf-document-automation: dedicated workflow guidance in its SKILL.md file.
