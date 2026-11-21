@@ -34,7 +34,7 @@ class User(Base):
  organization=relationship("Organization")
 class Machine(Base):
  __tablename__="machines"
- id:Mapped[int]=mapped_column(primary_key=True);external_id:Mapped[str]=mapped_column(String(80),index=True)
+ id:Mapped[int]=mapped_column(primary_key=True);external_id:Mapped[str]=mapped_column(String(80),unique=True,index=True)
  name:Mapped[str]=mapped_column(String(120));machine_type:Mapped[str]=mapped_column(String(80),default="Industrial motor")
  location:Mapped[str]=mapped_column(String(120),default="Production floor");status:Mapped[str]=mapped_column(String(30),default="operational")
  organization_id:Mapped[int]=mapped_column(ForeignKey("organizations.id"),index=True)
@@ -111,7 +111,9 @@ def ingest(d:Telemetry,x_ingest_key:str|None=Header(default=None),db:Session=Dep
  if not m:raise HTTPException(404,"Unknown machine ID")
  s,level=score(d);db.add(Reading(machine_id=m.id,temperature=d.temperature,vibration=d.vibration,pressure=d.pressure,energy=d.energy,recorded_at=d.recorded_at or utcnow(),anomaly_score=s,severity=level))
  m.status="critical" if level=="critical" else "attention" if level=="warning" else "operational"
- if level!="normal":db.add(Incident(organization_id=m.organization_id,machine_id=m.id,title=f"{level.title()} sensor anomaly detected",description=f"Baseline score {s:.2f}; temperature {d.temperature:.1f} °C; vibration {d.vibration:.1f} mm/s.",severity=level,status="open"))
+ if level!="normal":
+  active=db.query(Incident).filter(Incident.machine_id==m.id,Incident.status=="open").first()
+  if not active:db.add(Incident(organization_id=m.organization_id,machine_id=m.id,title=f"{level.title()} sensor anomaly detected",description=f"Baseline score {s:.2f}; temperature {d.temperature:.1f} °C; vibration {d.vibration:.1f} mm/s.",severity=level,status="open"))
  db.commit();return {"accepted":True,"machine_id":m.id,"anomaly_score":s,"severity":level,"scoring_method":"baseline_thresholds"}
 @app.get("/api/v1/overview")
 def overview(db:Session=Depends(get_db),u:User=Depends(current_user)):
