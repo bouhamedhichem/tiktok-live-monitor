@@ -1,0 +1,31 @@
+name: Portfolio websites quality
+on:
+  push:
+    branches: [feat/three-portfolio-websites]
+    paths:
+      - "apps/nexus-erp/**"
+      - "apps/quantvision-ai/**"
+      - ".github/workflows/portfolio-apps.yml"
+  pull_request:
+    paths:
+      - "apps/nexus-erp/**"
+      - "apps/quantvision-ai/**"
+      - ".github/workflows/portfolio-apps.yml"
+jobs:
+  build:
+    name: Build ${{ matrix.app }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [apps/nexus-erp, apps/quantvision-ai]
+    defaults:
+      run:
+        working-directory: ${{ matrix.app }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run build
