@@ -316,3 +316,37 @@ ExcelJS, csv-stringify, dotenv
 
 **Frontend:** React 18, Vite, Socket.IO client, lucide-react icons, plain
 CSS with custom properties (no framework lock-in)
+
+
+---
+
+## Academic & Portfolio Projects
+
+In addition to the TikTok LIVE monitoring application, this repository includes three software engineering portfolio projects. Their source code and setup instructions are maintained on the `feat/three-portfolio-websites` branch.
+
+### 1. NexusERP — Business Management Dashboard
+A React-based ERP/CRM interface for customer management, sales orders, inventory visibility and business analytics.
+
+- **Technologies:** React, Vite, Recharts, JavaScript.
+- **Highlights:** Customer search and creation, analytics dashboard, orders, inventory views and CSV export.
+- **Project source:** [Open NexusERP](https://github.com/bouhamedhichem/tiktok-live-monitor/tree/feat/three-portfolio-websites/apps/nexus-erp)
+
+### 2. QuantVision AI — Commodity Research Dashboard
+An educational financial research interface for gold, silver and petroleum, with interactive charts, watchlists and simulated paper orders.
+
+- **Technologies:** React, Vite, Recharts, JavaScript.
+- **Highlights:** Commodity selection, chart periods, technical snapshots, persistent watchlists and simulated orders.
+- **Project source:** [Open QuantVision AI](https://github.com/bouhamedhichem/tiktok-live-monitor/tree/feat/three-portfolio-websites/apps/quantvision-ai)
+- **Note:** Market values are illustrative; this project does not provide live prices or execute real trades.
+
+### 3. SentinelAI — Industrial Monitoring & Predictive Maintenance
+An industrial monitoring prototype with organization accounts, machine telemetry, incident management and a separate anomaly-scoring service.
+
+- **Technologies:** Python, FastAPI, PostgreSQL, SQLAlchemy, React, TypeScript, Docker.
+- **Highlights:** JWT authentication, tenant-scoped machine and incident APIs, telemetry dashboard, simulator and baseline anomaly scoring.
+- **Project source:** [Open SentinelAI](https://github.com/bouhamedhichem/tiktok-live-monitor/tree/feat/three-portfolio-websites/sentinel-ai)
+- **Note:** Included ML/demo data is synthetic and has not been validated for safety-critical use.
+
+### Portfolio overview
+See [apps/PORTFOLIO_OVERVIEW.md](https://github.com/bouhamedhichem/tiktok-live-monitor/blob/feat/three-portfolio-websites/apps/PORTFOLIO_OVERVIEW.md) for setup instructions, architecture and current limitations.
+
