@@ -7,3 +7,8 @@ button:focus-visible,input:focus-visible{outline:2px solid #a99cff;outline-offse
   .workspace,.navtitle,.bottom{display:none}
   .side>.nav{display:flex;flex:0 0 auto;width:auto;white-space:nowrap;padding:9px}
 }
+
+.dialog select,.dialog textarea{background:#0b0e17;border:1px solid #303548;border-radius:8px;padding:11px 12px;color:#f2f2f7;outline:none;font:inherit;font-size:12px;width:100%}
+.dialog textarea{min-height:88px;resize:vertical;line-height:1.5}
+.dialog select:focus,.dialog textarea:focus{border-color:#9282ff}
+.dialog button:disabled{opacity:.55;cursor:not-allowed}
