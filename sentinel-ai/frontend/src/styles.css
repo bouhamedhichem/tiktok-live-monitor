@@ -2,7 +2,7 @@
 /* Portfolio polish: keep all primary workspace routes reachable on mobile */
 button:focus-visible,input:focus-visible{outline:2px solid #a99cff;outline-offset:2px}
 @media(max-width:760px){
-  .side{display:flex;position:sticky;top:0;inset:auto;width:100%;height:auto;flex-direction:row;align-items:center;gap:5px;overflow-x:auto;white-space:nowrap;z-index:5;padding:10px 12px}
+  .side{display:flex;position:sticky;inset:auto;top:0;width:100%;height:auto;flex-direction:row;align-items:center;gap:5px;overflow-x:auto;white-space:nowrap;z-index:5;padding:10px 12px}
   .brand{flex:0 0 auto;padding:0 10px 0 0}
   .workspace,.navtitle,.bottom{display:none}
   .side>.nav{display:flex;flex:0 0 auto;width:auto;white-space:nowrap;padding:9px}
