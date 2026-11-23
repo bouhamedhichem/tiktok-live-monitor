@@ -1,4 +1,5 @@
 from datetime import datetime,timedelta,timezone
+from typing import Literal
 from fastapi import FastAPI,Depends,HTTPException,Header
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer
@@ -7,6 +8,7 @@ from pydantic_settings import BaseSettings
 from sqlalchemy import create_engine,String,Float,DateTime,ForeignKey,Boolean,Text,desc
 from sqlalchemy.orm import DeclarativeBase,sessionmaker,Mapped,mapped_column,relationship,Session
 from sqlalchemy import text
+from sqlalchemy.exc import IntegrityError
 from jose import jwt,JWTError
 from passlib.context import CryptContext
 
@@ -71,13 +73,13 @@ class Register(BaseModel):
  organization_name:str=Field(min_length=2,max_length=120);email:EmailStr;password:str=Field(min_length=10,max_length=128)
 class Login(BaseModel):email:EmailStr;password:str
 class MachineIn(BaseModel):
- external_id:str=Field(min_length=2,max_length=80);name:str=Field(min_length=2,max_length=120)
+ external_id:str=Field(min_length=2,max_length=80,pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]*$");name:str=Field(min_length=2,max_length=120)
  machine_type:str="Industrial motor";location:str="Production floor"
 class Telemetry(BaseModel):
  machine_external_id:str;temperature:float=Field(ge=-40,le=250);vibration:float=Field(ge=0,le=100)
  pressure:float=Field(ge=0,le=500);energy:float=Field(ge=0,le=10000);recorded_at:datetime|None=None
 class IncidentIn(BaseModel):
- machine_id:int;title:str=Field(min_length=3,max_length=180);description:str="";severity:str="medium"
+ machine_id:int;title:str=Field(min_length=3,max_length=180);description:str=Field(default="",max_length=2000);severity:Literal["low","medium","high","critical"]="medium"
 app=FastAPI(title="SentinelAI API",version="0.1.0",description="Industrial telemetry and predictive-maintenance foundation")
 app.add_middleware(CORSMiddleware,allow_origins=[x.strip() for x in cfg.cors_origins.split(",") if x.strip()],allow_credentials=True,allow_methods=["GET","POST","PATCH"],allow_headers=["Authorization","Content-Type","X-Ingest-Key"])
 @app.on_event("startup")
@@ -106,8 +108,12 @@ def login(d:Login,db:Session=Depends(get_db)):
 def machines(db:Session=Depends(get_db),u:User=Depends(current_user)):return db.query(Machine).filter(Machine.organization_id==u.organization_id).order_by(Machine.id).all()
 @app.post("/api/v1/machines",status_code=201)
 def add_machine(d:MachineIn,db:Session=Depends(get_db),u:User=Depends(current_user)):
- if db.query(Machine).filter(Machine.organization_id==u.organization_id,Machine.external_id==d.external_id).first():raise HTTPException(409,"Machine ID already exists")
- m=Machine(**d.model_dump(),organization_id=u.organization_id);db.add(m);db.commit();db.refresh(m);return m
+ if db.query(Machine).filter(Machine.external_id==d.external_id).first():raise HTTPException(409,"Machine ID is already registered")
+ m=Machine(**d.model_dump(),organization_id=u.organization_id);db.add(m)
+ try:db.commit()
+ except IntegrityError:
+  db.rollback();raise HTTPException(409,"Machine ID is already registered")
+ db.refresh(m);return m
 @app.get("/api/v1/machines/{mid}/latest")
 def latest(mid:int,db:Session=Depends(get_db),u:User=Depends(current_user)):
  m=own_machine(db,u,mid);r=db.query(Reading).filter(Reading.machine_id==m.id).order_by(desc(Reading.recorded_at)).first();return {"machine":m,"reading":r}
