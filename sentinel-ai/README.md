@@ -13,7 +13,7 @@ Console http://localhost:5173 · API docs http://localhost:8000/docs · ML healt
 Create an organization in the console. Register machines with external IDs `MOTOR-001`, `PRESS-002`, `PUMP-003`. Then run `docker compose --profile demo up simulator`.
 
 ## What's included
-- FastAPI + SQLAlchemy API, Argon2 password hashing, JWT auth, tenant-scoped machine and incident resources, readiness endpoint and API documentation.
+- FastAPI + SQLAlchemy API, Argon2 password hashing, JWT auth, tenant-scoped machine and incident resources, validated incident severity and machine identifiers, readiness endpoint and API documentation.\n- Expired frontend sessions are cleared and users are prompted to sign in again.
 - React + TypeScript dashboard, charting, fleet status and incident resolution.
 - Sensor simulator with occasional synthetic fault injection.
 - Separate Isolation Forest inference service and model training endpoint.
