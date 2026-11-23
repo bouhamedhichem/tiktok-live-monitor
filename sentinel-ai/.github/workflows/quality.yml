@@ -29,3 +29,8 @@ jobs:
           python-version: "3.12"
       - run: pip install fastapi==0.115.12 'uvicorn[standard]==0.34.2' sqlalchemy==2.0.40 'psycopg[binary]==3.2.9' pydantic-settings==2.9.1 'python-jose[cryptography]==3.4.0' 'passlib[argon2]==1.7.4' email-validator==2.2.0 pytest==8.3.5
       - run: PYTHONPATH=. pytest -q
+        env:
+          JWT_SECRET: ci-only-test-secret-change-me-32-chars-minimum
+          DATABASE_URL: sqlite:///./sentinel-test.db
+          SENTINEL_INGEST_API_KEY: ci-only-ingest-key-change-me-32-chars
+          CORS_ORIGINS: http://localhost:5173
