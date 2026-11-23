@@ -13,7 +13,7 @@ npm run build
 ```
 
 ## Included
-Executive overview and revenue chart; customer directory with search and add-customer workflow; orders table and CSV export; inventory and analytics views; responsive layout.
+Executive overview and revenue chart; customer directory with search and add-customer workflow; orders table and order/customer CSV exports; duplicate-email validation; inventory and analytics views; responsive layout with mobile-accessible navigation.
 
 ## Limitations
 This milestone uses illustrative sample records. Customer records are persisted in browser localStorage on the current device. Orders, inventory, invoices and financial KPIs remain illustrative fixtures. No shared database, authentication, accounting ledger, payment gateway or stock synchronization is connected. This is a portfolio demo, not a system of record. Production milestone: authenticated API, PostgreSQL schema, tenant isolation/RBAC, audit events, migrations, backups and integration tests.
