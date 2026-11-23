@@ -2,7 +2,7 @@
 /* Portfolio polish: keyboard focus and usable mobile workspace navigation */
 button:focus-visible,input:focus-visible{outline:2px solid #4779ed;outline-offset:2px}
 @media(max-width:700px){
-  .sidebar{display:flex;position:sticky;inset:auto;width:100%;height:auto;flex-direction:row;align-items:center;gap:5px;overflow-x:auto;white-space:nowrap;z-index:5;padding:10px 12px}
+  .sidebar{display:flex;position:sticky;inset:auto;top:0;width:100%;height:auto;flex-direction:row;align-items:center;gap:5px;overflow-x:auto;white-space:nowrap;z-index:5;padding:10px 12px}
   .brand{flex:0 0 auto;padding:0 10px 0 0}
   .brand small{display:none}
   .org,.navlabel,.sidebottom{display:none}
