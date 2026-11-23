@@ -1,7 +1,7 @@
 name: Portfolio websites quality
 on:
   push:
-    branches: [feat/three-portfolio-websites]
+    branches: [feat/three-portfolio-websites, feat/portfolio-apps-complete]
     paths:
       - "apps/nexus-erp/**"
       - "apps/quantvision-ai/**"
