@@ -13,7 +13,7 @@ npm run build
 ```
 
 ## Included
-Selectable commodity cards; 1D/1W chart views; technical-indicator snapshot; watchlist management; research-methodology cards; paper-order form, session order list and CSV export.
+Selectable commodity cards; 1D/1W chart views; technical-indicator snapshot; watchlist management; research-methodology cards; paper-order form, browser-persisted watchlist and simulated orders, and CSV export.
 
 ## Data and financial safety
 All prices, changes, technical indicators and chart points are illustrative sample values, not live market data. No forecasting model is trained or deployed, and no external market/news provider is connected. Paper orders are local simulations only; there is no broker API or real execution. This is an educational research prototype, not investment advice or a trading recommendation.
