@@ -17,7 +17,8 @@ class Settings(BaseSettings):
  class Config: env_file=".env"
 cfg=Settings()
 db_url=cfg.database_url
-if db_url.startswith("postgresql://"):db_url=db_url.replace("postgresql://","postgresql+psycopg://",1)
+if db_url.startswith("postgres://"):db_url=db_url.replace("postgres://","postgresql+psycopg://",1)
+elif db_url.startswith("postgresql://"):db_url=db_url.replace("postgresql://","postgresql+psycopg://",1)
 engine=create_engine(db_url,pool_pre_ping=True,pool_recycle=300,connect_args={"check_same_thread":False} if db_url.startswith("sqlite") else {})
 SessionLocal=sessionmaker(bind=engine,autoflush=False,autocommit=False)
 class Base(DeclarativeBase):pass

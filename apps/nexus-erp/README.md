@@ -16,4 +16,4 @@ npm run build
 Executive overview and revenue chart; customer directory with search and add-customer workflow; orders table and CSV export; inventory and analytics views; responsive layout.
 
 ## Limitations
-This milestone uses illustrative sample records. New customer entries live only in React state and disappear on refresh. No database, authentication, accounting ledger, payments or stock synchronization is connected. Do not use as a system of record. Next milestone: API, PostgreSQL schema, tenant isolation/RBAC, audit events, migrations and integration tests.
+This milestone uses illustrative sample records. Customer records are persisted in browser localStorage on the current device. Orders, inventory, invoices and financial KPIs remain illustrative fixtures. No shared database, authentication, accounting ledger, payment gateway or stock synchronization is connected. This is a portfolio demo, not a system of record. Production milestone: authenticated API, PostgreSQL schema, tenant isolation/RBAC, audit events, migrations, backups and integration tests.
