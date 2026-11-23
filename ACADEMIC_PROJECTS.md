@@ -45,7 +45,7 @@ Three software engineering portfolio projects developed as practical demonstrati
 **Key features**
 - Organization registration and authentication.
 - Tenant-scoped machine and incident APIs.
-- Industrial telemetry dashboard and sensor simulator.
+- Industrial telemetry dashboard, sensor simulator, incident creation and resolution workflows, and session-expiry handling.
 - Incident creation and resolution workflows.
 - Baseline anomaly scoring and a separate ML inference service.
 - Docker Compose development environment and API documentation.
